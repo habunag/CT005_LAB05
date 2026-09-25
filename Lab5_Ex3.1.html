@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lợi ích công nghệ số trong học tập</title>
+  <style>
+    :root {
+      --bg-teal: #0a9bb0;
+      --bg-teal-dark: #0d6f87;
+      --card-blue: #0e4d6f;
+      --light-blue: #dff4f8;
+      --yellow: #f3c54b;
+      --soft-yellow: #f8d870;
+      --green: #4ec3b6;
+      --cream: #f7f5ef;
+      --text-dark: #0d2c3d;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg-teal);
+      color: var(--text-dark);
+    }
+
+    .page {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      background: var(--bg-teal);
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      padding: 18px 12px 40px;
+    }
+
+    .page::before,
+    .page::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .page::before {
+      width: 140px;
+      height: 140px;
+      left: -30px;
+      top: 120px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .page::after {
+      width: 150px;
+      height: 150px;
+      right: -20px;
+      bottom: 40px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .circle-top-left,
+    .circle-top-right,
+    .circle-bottom-left,
+    .circle-bottom-right {
+      position: absolute;
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .circle-top-left {
+      width: 90px;
+      height: 90px;
+      background: var(--yellow);
+      left: 10px;
+      top: 30px;
+    }
+
+    .circle-top-right {
+      width: 150px;
+      height: 150px;
+      background: rgba(255,255,255,0.08);
+      right: -30px;
+      top: 80px;
+      border: 8px solid rgba(255,255,255,0.18);
+    }
+
+    .circle-bottom-left {
+      width: 120px;
+      height: 120px;
+      background: rgba(255,255,255,0.1);
+      left: -40px;
+      bottom: 180px;
+    }
+
+    .circle-bottom-right {
+      width: 100px;
+      height: 100px;
+      background: rgba(255,255,255,0.12);
+      right: -15px;
+      bottom: 120px;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      text-align: center;
+      font-size: clamp(2.2rem, 8vw, 4rem);
+      line-height: 0.95;
+      font-weight: 900;
+      letter-spacing: -2px;
+      color: #0d2c3d;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      position: relative;
+      background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.12));
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+      margin-bottom: 18px;
+      border: 4px solid rgba(255,255,255,0.15);
+    }
+
+    .hero img {
+      display: block;
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      filter: contrast(1.06) saturate(1.1);
+    }
+
+    .hero .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.2));
+    }
+
+    .benefit-list {
+      margin-top: 10px;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      background: rgba(13, 110, 136, 0.96);
+      border-radius: 18px;
+      margin-bottom: 18px;
+      padding: 18px 14px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+      overflow: hidden;
+      min-height: 110px;
+    }
+
+    .benefit-item:nth-child(2n) {
+      background: rgba(20, 139, 156, 0.98);
+    }
+
+    .benefit-item:nth-child(3) {
+      background: #40b0b7;
+    }
+
+    .icon-box {
+      width: 120px;
+      min-width: 120px;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-right: 16px;
+    }
+
+    .icon-box .circle {
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      border: 3px solid rgba(255,255,255,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .icon-box .circle::before {
+      content: "";
+      position: absolute;
+      width: 46px;
+      height: 46px;
+      border: 4px solid rgba(255,255,255,0.9);
+      border-radius: 50%;
+      opacity: 0.9;
+    }
+
+    .icon-box .clock {
+      width: 46px;
+      height: 46px;
+      border: 5px solid rgba(255,255,255,0.95);
+      border-radius: 50%;
+      position: relative;
+      display: block;
+    }
+
+    .icon-box .clock::before {
+      content: "";
+      position: absolute;
+      width: 3px;
+      height: 12px;
+      top: 10px;
+      left: 20px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 2px;
+    }
+
+    .icon-box .clock::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 3px;
+      top: 20px;
+      left: 20px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 2px;
+      transform-origin: left center;
+      transform: rotate(55deg);
+    }
+
+    .icon-box .book {
+      position: relative;
+      width: 54px;
+      height: 40px;
+      border-radius: 8px 8px 0 0;
+      background: rgba(255,255,255,0.9);
+      display: block;
+      box-shadow: inset 0 0 0 2px rgba(36, 116, 140, 0.2);
+    }
+
+    .icon-box .book::before,
+    .icon-box .book::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 8px 8px 0 0;
+      background: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+    }
+
+    .icon-box .book::before {
+      transform: translateX(-6px) skewY(-12deg);
+      width: 54px;
+      height: 40px;
+    }
+
+    .icon-box .book::after {
+      transform: translateX(6px) skewY(12deg);
+      width: 54px;
+      height: 40px;
+      opacity: .9;
+    }
+
+    .icon-box .chart {
+      width: 70px;
+      height: 50px;
+      position: relative;
+      display: block;
+    }
+
+    .icon-box .chart::before {
+      content: "";
+      position: absolute;
+      left: 8px;
+      bottom: 8px;
+      width: 8px;
+      height: 28px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 6px;
+      box-shadow: 18px -10px 0 0 rgba(255,255,255,0.9),
+                  36px 8px 0 0 rgba(255,255,255,0.9);
+    }
+
+    .icon-box .chart::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 70px;
+      height: 5px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 8px;
+    }
+
+    .icon-box .people {
+      width: 80px;
+      height: 54px;
+      position: relative;
+      display: block;
+    }
+
+    .icon-box .people::before,
+    .icon-box .people::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      width: 18px;
+      height: 18px;
+      top: 0;
+      left: 0;
+      box-shadow: 22px 0 0 rgba(255,255,255,0.9),
+                  44px 0 0 rgba(255,255,255,0.9);
+    }
+
+    .icon-box .people::after {
+      width: 54px;
+      height: 24px;
+      left: 12px;
+      top: 26px;
+      border-radius: 18px 18px 8px 8px;
+      box-shadow: none;
+    }
+
+    .benefit-text {
+      color: #f5f9fd;
+      flex: 1;
+    }
+
+    .benefit-text strong {
+      display: block;
+      font-size: 1.05rem;
+      line-height: 1.3;
+      margin-bottom: 5px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .benefit-text span {
+      display: block;
+      font-size: 0.94rem;
+      line-height: 1.4;
+      color: rgba(255,255,255,0.96);
+    }
+
+    .credit-box {
+      background: #0e5d7f;
+      color: #fff;
+      border-radius: 18px 18px 12px 12px;
+      padding: 18px 14px;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+    }
+
+    .shield {
+      width: 78px;
+      height: 78px;
+      min-width: 78px;
+      border-radius: 18px;
+      background: #f4f8fb;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 0 0 3px rgba(13, 110, 136, 0.2);
+    }
+
+    .shield::before {
+      content: "";
+      width: 34px;
+      height: 42px;
+      background: linear-gradient(180deg, #1e7b9d, #204f74);
+      clip-path: polygon(50% 0%, 100% 18%, 100% 58%, 50% 100%, 0% 58%, 0% 18%);
+      position: absolute;
+      border-radius: 6px;
+    }
+
+    .shield::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: #f8d870;
+      border-radius: 50%;
+      box-shadow: 0 0 0 6px rgba(248,216,112,0.18);
+    }
+
+    .credit-text {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.95);
+    }
+
+    .credit-text em {
+      font-style: italic;
+      color: #f3f7ff;
+    }
+
+    .credit-text .small {
+      display: block;
+      margin-top: 8px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .video-box {
+      margin-top: 24px;
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    }
+
+    .video-box h3 {
+      margin: 0 0 12px;
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      text-align: center;
+    }
+
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    @media (max-width: 420px) {
+      .benefit-item {
+        padding: 14px 10px;
+      }
+
+      .icon-box {
+        width: 96px;
+        min-width: 96px;
+        margin-right: 10px;
+      }
+
+      .benefit-text strong {
+        font-size: 0.96rem;
+      }
+
+      .benefit-text span {
+        font-size: 0.82rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="circle-top-left"></div>
+    <div class="circle-top-right"></div>
+    <div class="circle-bottom-left"></div>
+    <div class="circle-bottom-right"></div>
+
+    <div class="content">
+      <h1>Lợi ích của<br>công nghệ số<br>trong học tập</h1>
+
+      <div class="hero">
+        <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=1200&q=80" alt="Học tập với công nghệ" />
+        <div class="overlay"></div>
+      </div>
+
+      <div class="benefit-list">
+        <div class="benefit-item">
+          <div class="icon-box">
+            <span class="circle clock"></span>
+          </div>
+          <div class="benefit-text">
+            <strong>1. Học tập mọi lúc, mọi nơi</strong>
+            <span>Chủ động thời gian, không bị giới hạn bởi không gian.</span>
+          </div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="icon-box">
+            <span class="book"></span>
+          </div>
+          <div class="benefit-text">
+            <strong>2. Tiếp cận kho kiến thức phong phú</strong>
+            <span>Dễ dàng tìm kiếm và học hỏi từ nhiều nguồn uy tín.</span>
+          </div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="icon-box">
+            <span class="chart"></span>
+          </div>
+          <div class="benefit-text">
+            <strong>3. Cá nhân hóa tốc độ học</strong>
+            <span>Học theo năng lực và mục tiêu của bản thân.</span>
+          </div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="icon-box">
+            <span class="people"></span>
+          </div>
+          <div class="benefit-text">
+            <strong>4. Tăng tương tác và hợp tác</strong>
+            <span>Kết nối, trao đổi và làm việc nhóm hiệu quả hơn.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="credit-box">
+        <div class="shield"></div>
+        <div class="credit-text">
+          <em>"Infographic tạo bởi Canva AI, hình ảnh từ Unsplash"
+          <br>
+          "CÂU LỆNH TẠO BỞI AI"</em>
+          <span class="small">Duong Ngoc Han B2605412</span>
+        </div>
+      </div>
+
+      <div class="video-box">
+        <h3>Video ứng dụng Công nghệ số trong học tập</h3>
+        
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/IJ583ituRqA?si=wu3lpgxpS2J8Lzx0"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  
+            allowfullscreen>
+                 
+          </iframe>
+   <div class="source-note">
+       <em>"CÂU LỆNH TẠO BỞI AI"</em>
+  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

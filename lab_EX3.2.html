@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio cá nhân - Dương Ngọc Hân</title>
+
+  <style>
+    :root {
+      --teal: #0a9bb0;
+      --dark-blue: #0d2c3d;
+      --blue: #0e5d7f;
+      --yellow: #f3c54b;
+      --white: #ffffff;
+      --light: #eefafa;
+      --text: #29434e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #078fa3, #9de4eb);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--dark-blue);
+      color: white;
+      padding: 16px 6%;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar {
+      max-width: 1150px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.35rem;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: var(--yellow);
+    }
+
+    .container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 35px 20px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr;
+      gap: 30px;
+      align-items: center;
+      margin-bottom: 45px;
+    }
+
+    .hero-text {
+      color: white;
+    }
+
+    .hero-text h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.3rem, 6vw, 4.5rem);
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+
+    .hero-text h1 span {
+      color: var(--yellow);
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 12px 22px;
+      border-radius: 25px;
+      background: var(--yellow);
+      color: var(--dark-blue);
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .button:hover {
+      background: white;
+      transform: translateY(-3px);
+    }
+
+    .profile-card {
+      padding: 25px;
+      text-align: center;
+      color: white;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 24px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 6px solid var(--yellow);
+    }
+
+    .profile-card h2 {
+      margin: 10px 0 4px;
+    }
+
+    .profile-card p {
+      margin: 5px 0;
+    }
+
+    .section-title {
+      margin: 45px 0 25px;
+      color: white;
+      text-align: center;
+      font-size: 2.2rem;
+    }
+
+    .about-box {
+      padding: 25px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+    }
+
+    .info-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .info-list li {
+      padding: 12px;
+      background: var(--light);
+      border-left: 5px solid var(--teal);
+      border-radius: 8px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.14);
+      transition: 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .product-header {
+      padding: 16px;
+      background: var(--blue);
+      color: white;
+    }
+
+    .product-header h3 {
+      margin: 8px 0 0;
+    }
+
+    .product-number {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: var(--yellow);
+      color: var(--dark-blue);
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .product-body {
+      flex: 1;
+      padding: 17px;
+    }
+
+    .product-body p {
+      color: #536a72;
+    }
+
+    .pdf-viewer {
+      width: 100%;
+      height: 320px;
+      border: 1px solid #ccdfe2;
+      border-radius: 10px;
+    }
+
+    .png-preview {
+      width: 100%;
+      height: 320px;
+      object-fit: contain;
+      background: var(--light);
+      border: 1px solid #d5e4e6;
+      border-radius: 10px;
+    }
+
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      overflow: hidden;
+      background: #000;
+      border-radius: 10px;
+    }
+
+    .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .download-link {
+      display: inline-block;
+      margin-top: 12px;
+      color: var(--blue);
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .download-link:hover {
+      text-decoration: underline;
+    }
+
+    .source-note {
+      margin-top: 15px;
+      padding-top: 12px;
+      border-top: 1px solid #d5e1e3;
+      color: #60777d;
+      font-size: 0.82rem;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .contact-box {
+      margin-top: 45px;
+      padding: 28px;
+      color: white;
+      text-align: center;
+      background: var(--dark-blue);
+      border-radius: 20px;
+    }
+
+    .contact-box a {
+      color: var(--yellow);
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    footer {
+      margin-top: 35px;
+      padding: 20px;
+      color: white;
+      text-align: center;
+      background: var(--dark-blue);
+    }
+
+    @media (max-width: 850px) {
+      .hero,
+      .products {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .navbar {
+        flex-direction: column;
+      }
+
+      nav a {
+        margin: 0 7px;
+        font-size: 0.9rem;
+      }
+
+      .info-list {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-text {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="navbar">
+      <div class="logo">Portfolio cá nhân</div>
+
+      <nav>
+        <a href="#gioi-thieu">Giới thiệu</a>
+        <a href="#san-pham">Sản phẩm</a>
+        <a href="#lien-he">Liên hệ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Giới thiệu cá nhân -->
+    <section class="hero" id="gioi-thieu">
+      <div class="hero-text">
+        <h1>
+          Xin chào!<br>
+          Tôi là <span>Dương Ngọc Hân</span>
+        </h1>
+
+        <p>
+          Tôi là sinh viên yêu thích công nghệ số, thiết kế infographic
+          và sáng tạo nội dung phục vụ học tập. Trang web này giới thiệu
+          thông tin cá nhân và ba sản phẩm tôi đã thực hiện.
+        </p>
+
+        <a href="#san-pham" class="button">Xem sản phẩm</a>
+      </div>
+
+      <div class="profile-card">
+       
+
+        <h2>Dương Ngọc Hân</h2>
+        <p>Mã sinh viên: B2605412</p>
+        <p>Thiết kế - Công nghệ số - Học tập</p>
+      </div>
+    </section>
+
+    <!-- Thông tin cá nhân -->
+    <section>
+      <h2 class="section-title">Thông tin cá nhân</h2>
+
+      <div class="about-box">
+        <p>
+          Tôi quan tâm đến việc ứng dụng công nghệ vào học tập và truyền thông.
+          Tôi sử dụng HTML, CSS và Canva AI để tạo ra những sản phẩm trực quan,
+          dễ hiểu và có tính ứng dụng.
+        </p>
+
+        <ul class="info-list">
+          <li><strong>Họ và tên:</strong> Dương Ngọc Hân</li>
+          <li><strong>Mã sinh viên:</strong> B2605412</li>
+          <li><strong>Sở thích:</strong> Thiết kế, học tập, sáng tạo nội dung</li>
+          <li><strong>Kỹ năng:</strong> HTML, CSS, Canva AI, thiết kế infographic</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Ba sản phẩm -->
+    <section id="san-pham">
+      <h2 class="section-title">Ba sản phẩm đã tạo</h2>
+
+      <div class="products">
+
+        <!-- Sản phẩm 1: PDF -->
+        <article class="product-card">
+          <div class="product-header">
+            <span class="product-number">Sản phẩm 01</span>
+            <h3>Tài liệu PDF</h3>
+          </div>
+
+          <div class="product-body">
+            <p>
+              Tài liệu PDF được thực hiện trong bài tập Lab5.
+              Người xem có thể đọc trực tiếp hoặc mở tài liệu ở tab mới.
+            </p>
+
+            <iframe
+              class="pdf-viewer"
+               <a href="lab5_EX1.2.pdf"></a>.
+              title="Tài liệu PDF Lab5">
+            </iframe>
+
+            <a
+              class="download-link"
+              href="lab5_EX1.2.pdf"
+              target="_blank">
+              Mở tài liệu PDF
+            </a>
+
+            <div class="source-note">
+              Nguồn: Tài liệu do Dương Ngọc Hân thực hiện.
+            </div>
+          </div>
+        </article>
+
+        <!-- Sản phẩm 2: PNG -->
+        <article class="product-card">
+          <div class="product-header">
+            <span class="product-number">Sản phẩm 02</span>
+            <h3>Infographic PNG</h3>
+          </div>
+
+          <div class="product-body">
+            <p>
+              Infographic trình bày các lợi ích của công nghệ số trong học tập:
+              học mọi lúc mọi nơi, tiếp cận kiến thức phong phú,
+              cá nhân hóa tốc độ học và tăng khả năng hợp tác.
+            </p>
+
+            <img
+              class="png-preview"
+              src="lab5_EX2.1.png"
+              alt="Infographic về lợi ích của công nghệ số trong học tập">
+
+            <a
+              class="download-link"
+              href="lab5_EX2.1.png"
+              download>
+              Tải infographic PNG
+            </a>
+
+            <div class="source-note">
+              Infographic tạo bởi Canva AI, hình ảnh tham khảo từ Unsplash.
+            </div>
+          </div>
+        </article>
+
+        <!-- Sản phẩm 3: YouTube -->
+        <article class="product-card">
+          <div class="product-header">
+            <span class="product-number">Sản phẩm 03</span>
+            <h3>Video YouTube</h3>
+          </div>
+
+          <div class="product-body">
+            <p>
+              Video giới thiệu nội dung về ứng dụng công nghệ số trong học tập.
+            </p>
+
+            <div class="video-wrap">
+              <iframe
+                src="https://www.youtube.com/embed/IJ583ituRqA?si=wu3lpgxpS2J8Lzx0"
+                title="Video ứng dụng công nghệ số trong học tập"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+              </iframe>
+            </div>
+
+            <div class="source-note">
+              Video tham khảo từ YouTube.
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Liên hệ -->
+    <section id="lien-he">
+      <div class="contact-box">
+        <h2>Thông tin liên hệ</h2>
+        <p>
+          Email:
+          <a href="mailto: hanb2605412@student.ctu.edu.vn">
+           hanb2605412@student.ctu.edu.vn
+          </a>
+        </p>
+        <p>Dương Ngọc Hân - B2605412
+		<br> "Nguồn: Câu lệnh được tạo bởi AI và có sự chỉnh sửa"</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 Dương Ngọc Hân - Portfolio cá nhân
+	
+	
+  </footer>
+
+</body>
+</html>
